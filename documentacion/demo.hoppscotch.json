@@ -1,0 +1,96 @@
+{
+    "v": 2,
+    "name": "demo",
+    "folders": [],
+    "requests": [
+        {
+            "v": "5",
+            "auth": {
+                "token": "<<access_token>>",
+                "authType": "bearer",
+                "authActive": false
+            },
+            "body": {
+                "body": "",
+                "contentType": null
+            },
+            "name": "foo",
+            "method": "GET",
+            "params": [],
+            "headers": [],
+            "endpoint": "<<hostUrl>>/foo",
+            "testScript": "",
+            "preRequestScript": "",
+            "requestVariables": []
+        },
+        {
+            "v": "5",
+            "auth": {
+                "token": "",
+                "authType": "basic",
+                "password": "<<client-secret>>",
+                "username": "<<client-id>>",
+                "authActive": true
+            },
+            "body": {
+                "body": "token: <<access_token>>",
+                "contentType": "application/x-www-form-urlencoded"
+            },
+            "name": "introspect",
+            "method": "POST",
+            "params": [],
+            "headers": [],
+            "endpoint": "<<hostUrl>>/oauth2/introspect",
+            "testScript": "",
+            "preRequestScript": "",
+            "requestVariables": []
+        },
+        {
+            "v": "5",
+            "auth": {
+                "authType": "none",
+                "authActive": true
+            },
+            "body": {
+                "body": "",
+                "contentType": null
+            },
+            "name": "actuator",
+            "method": "GET",
+            "params": [],
+            "headers": [],
+            "endpoint": "<<hostUrl>>/actuator",
+            "testScript": "",
+            "preRequestScript": "",
+            "requestVariables": []
+        },
+        {
+            "v": "5",
+            "auth": {
+                "token": "",
+                "authType": "basic",
+                "password": "<<client-secret>>",
+                "username": "<<client-id>>",
+                "authActive": true
+            },
+            "body": {
+                "body": "grant_type: client_credentials\n\"scope: read\": read",
+                "contentType": "application/x-www-form-urlencoded"
+            },
+            "name": "token",
+            "method": "POST",
+            "params": [],
+            "headers": [],
+            "endpoint": "<<hostUrl>>/oauth2/token",
+            "testScript": "const jsonData = pw.response.body\npw.env.set(\"access_token\", jsonData.access_token);",
+            "preRequestScript": "",
+            "requestVariables": []
+        }
+    ],
+    "auth": {
+        "token": "<<access_token>>",
+        "authType": "bearer",
+        "authActive": true
+    },
+    "headers": []
+}

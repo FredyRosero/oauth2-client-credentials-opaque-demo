@@ -1,0 +1,32 @@
+# REST Client for Visual Studio Code: https://marketplace.visualstudio.com/items?itemName=humao.rest-client
+
+# The hostname and port of the server
+@hostname = localhost
+@port = 8080
+@host = {{hostname}}:{{port}}
+# The client id and secret encoded in base 64 with the format `client_id:client_secret`
+@basic_auth = Y2xpZW50LWlkOmNsaWVudC1zZWNyZXQ= 
+# The access token granted by the server
+@acess_token = zDbovoIioEwV-zW6PWPaCQZcWwIEaNpdMsbWnOd0TLtR42EvNji1EadlZikfhMSHKarMd5EEBsaViEj4slmYtDyX_nlR3nX3R5_G3LXdGQ1xdLN7-PA_aN76KnaWpQ7Z
+
+### Obtener token de acceso
+POST http://{{host}}/oauth2/token
+Authorization: Basic {{basic_auth}}
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials&scope=read
+
+### Introspect token
+POST http://{{host}}/oauth2/introspect
+Host: localhost:8080
+Authorization: Basic Y2xpZW50LWlkOmNsaWVudC1zZWNyZXQ=
+Content-Type: application/x-www-form-urlencoded
+
+token={{acess_token}}
+
+### Request a protected resource with the access token
+GET http://{{host}}/foo
+Authorization: Bearer {{acess_token}}
+
+### Request a protected resource without the access token
+GET http://{{host}}/foo
